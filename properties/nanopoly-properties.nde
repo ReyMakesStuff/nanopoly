@@ -1,0 +1,87 @@
+; nanDECK Opoly Property Cards
+; created by ReyMakesStuff
+; Don't claim it as your own and don't sell it.
+; I wish you wouldn't share it, but I have no control over that.
+; 
+; Requires Kabel font (not free)
+; Works with Internet Explorer 11 enabled, even on Windows 11
+; 
+cardsize=6.5,7.5
+link="nanopoly_properties.csv"
+;letter paper
+page=21.5,27.9,PORTRAIT,HV
+[footer]="If a player owns ALL the lots of any color group, the rent is doubled on unimproved lots in that group."
+[footer_mortgage]="Card must be turned this side up if property is mortgaged"
+[duplexstart]={(name)+1}
+[duplexend]={(name)*2}
+[front]=1-{(name)}
+[back]=[duplexstart]-[duplexend]
+font="Kabel",10,BFT,[title_color]
+
+; ========================================
+;  Card fronts
+; ========================================
+VISUAL=G, 24, 36
+;Title Border(locked)
+RECTANGLE=[front],2%,2%,96%,96%,#000000,EMPTY,0.05
+;Title Box(locked)
+RECTANGLE=[front],4%,4%,92%,10%,#000000,[color],0.05
+;Title Text Font(locked)
+FONT=Kabel,28,BTF,[title_color]
+;Title Text(locked)
+TEXT=[front],[name],5%,5%,90%,8%,CENTER,CENTER
+;Body text font
+FONT=Kabel Light,14,BTF,#000000
+;Rent
+TEXT=[front],"RENT $[rent]",4%,15%,92%,6%
+;With 1 House(locked)
+TEXT=[front],"With 1 House",6%,23%,92%,6%,LEFT,CENTER
+;Dollar sign
+TEXT=[front],"$",73%,23%,92%,6%,LEFT,CENTER
+;Rent, 1(locked)
+TEXT=[front],[house1],50%,23%,42%,6%,RIGHT,CENTER
+;With 2 Houses(locked)
+TEXT=[front],"With 2 Houses",6%,31%,91.981%,6%,LEFT,CENTER
+;Rent, 2(locked)
+TEXT=[front],[house2],50%,31%,42%,6%,RIGHT,CENTER
+;With 3 Houses(locked)
+TEXT=[front],"With 3 Houses",6%,39%,92%,6%,LEFT,CENTER
+;Rent, 3(locked)
+TEXT=[front],[house3],50%,39%,42%,6%,RIGHT,CENTER
+;With 4 Houses(locked)
+TEXT=[front],"With 4 Houses",6%,47%,92%,6%,LEFT,CENTER
+;Rent, 4(locked)
+TEXT=[front],[house4],50%,47%,42%,6%,RIGHT,CENTER
+;With Hotel(locked)
+TEXT=[front],"With Hotel $[hotel]",6%,56%,92%,6%,CENTER,CENTER
+;Mortgage(locked)
+TEXT=[front],"Mortgage Value $[mortgage_value]",6%,64%,92%,6%,CENTER,CENTER
+;House cost(locked)
+TEXT=[front],"Houses cost $[cost_house] each",6%,72%,92%,6%,CENTER,CENTER
+;Hotel cost(locked)
+TEXT=[front],"Hotels cost $[cost_hotel], plus 4 houses",6%,80%,92%,6%,CENTER,CENTER
+
+;Footer text font(locked)
+FONT=Kabel Light,6,BFTI,#000000
+;Footer text(locked)
+TEXT=[front],[footer],4%,90%,92%,102%,CENTER,WORDWRAP
+ENDVISUAL
+
+; ========================================
+;  Card backs
+; ========================================
+[propname]=REPLACE([name]," ",\13\)
+FONT=Kabel,32,BTF,#000000
+TEXT=[back],[propname],5%,5%,90%,50%,CENTER,CENTER
+FONT=Kabel,16,BTF,#000000
+TEXT=[back],"Mortgaged\13\for $[mortgage_value]",5%,60%,90%,25%,CENTER,CENTER
+;mortage footer
+FONT=Kabel Light,9,BFTI,#000000
+TEXT=[back],[footer_mortgage],4%,85%,92%,102%,CENTER,WORDWRAP
+
+; ========================================
+;  Backs
+; ========================================
+;page=21.5,27.9,PORTRAIT,HV
+duplex=1-{(name)},[duplexstart]-[duplexend]
+print=duplex
