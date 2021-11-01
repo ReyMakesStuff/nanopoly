@@ -1,0 +1,101 @@
+; nanDECK Opoly Railroad Cards
+; created by ReyMakesStuff
+; Don't claim it as your own and don't sell it.
+; I wish you wouldn't share it, but I have no control over that.
+; 
+; Requires Kabel font (not free)
+; Works with Internet Explorer 11 enabled, even on Windows 11
+; 
+cardsize=6.5,7.5
+;letter paper
+page=21.5,27.9,PORTRAIT,HV
+;OVERSAMPLE=2
+
+;====================
+;  Railroad Data
+;====================
+;all prices are the same
+[rent1]          = 25
+[rent2]          = 50
+[rent3]          = 100
+[rent4]          = 200
+[mortgage_value] = 100
+SEQUENCE=
+name            |Reading Railroad
+shortname       |Reading
+
+name            |Short Line R.R.
+shortname       |Short Line
+
+name            |B&O Railroad
+shortname       |B&O
+
+name            |Pennsylvania R.R.
+shortname       |Pennsylvania
+ENDSEQUENCE
+
+[footer_mortgage]="Card must be turned this side up if property is mortgaged"
+[duplexstart]={(name)+1}
+[duplexend]={(name)*2}
+[front]=1-{(name)}
+[back]=[duplexstart]-[duplexend]
+
+;====================
+;  Card Fronts
+;====================
+border=MARK,#dddddd,0.05,DOTTED
+VISUAL=G, 24, 36
+;Card Border(locked)
+RECTANGLE=[front],2%,2%,96%,96%,#000000,EMPTY,0.05
+;top line around title
+line=[front],6%,40%,94%,40%,#000000,0.05
+;bottom line around title
+line=[front],6%,50%,94%,50%,#000000,0.05
+;Title Text Font(locked)
+FONT=Kabel,28,BTF,#000000
+;Title Text(locked)
+TEXT=[front],[name],5%,41%,90%,8%,CENTER,CENTER
+;Railroad icon
+image=[front],"railroad.png",4%,6%,92%,30%,0,NP
+;Body text font
+FONT=Kabel Light,14,BTF,#000000
+;With 1 House(locked)
+TEXT=[front],"Rent",6%,53%,92%,6%,LEFT,CENTER
+;Dollar sign
+TEXT=[front],"$",73%,53%,92%,6%,LEFT,CENTER
+;Rent, 1(locked)
+TEXT=[front],[rent1],50%,53%,42%,6%,RIGHT,CENTER
+;With 2 Houses(locked)
+TEXT=[front],"If 2 railroads are owned",6%,61%,92%,6%,LEFT,CENTER
+;Rent, 2(locked)
+TEXT=[front],[rent2],50%,61%,42%,6%,RIGHT,CENTER
+;With 3 Houses(locked)
+TEXT=[front],"If 3...",6%,69%,92%,6%,LEFT,CENTER
+;Rent, 3(locked)
+TEXT=[front],[rent3],50%,69%,42%,6%,RIGHT,CENTER
+;With 4 Houses(locked)
+TEXT=[front],"If 4...",6%,77%,92%,6%,LEFT,CENTER
+;Rent, 4(locked)
+TEXT=[front],[rent4],50%,77%,42%,6%,RIGHT,CENTER
+;Mortgage(locked)
+TEXT=[front],"Mortgage Value $[mortgage_value]",6%,87%,92%,6%,CENTER,CENTER
+
+ENDVISUAL
+
+;====================
+;  Card Backs
+;====================
+FONT=Kabel,32,BTF,#000000
+TEXT=[back],"[shortname]\13\Railroad",5%,5%,90%,50%,CENTER,CENTER
+FONT=Kabel,16,BTF,#000000
+TEXT=[back],"Mortgaged\13\for $[mortgage_value]",5%,60%,90%,25%,CENTER,CENTER
+
+;mortage footer
+FONT=Kabel Light,9,BFTI,#000000
+TEXT=[back],[footer_mortgage],4%,85%,92%,12%,CENTER,WORDWRAP
+
+;====================
+; Backs
+;====================
+duplex=1-{(name)},[duplexstart]-[duplexend]
+print=duplex
