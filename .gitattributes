@@ -1,0 +1,14 @@
+# I'm not sure if this is required, but I was bored
+
+# Documents
+*.nde    text
+*.pdf      diff=astextplain
+*.PDF      diff=astextplain
+
+# Images
+*.png    binary
+
+# Exclude from exporting
+.gitattributes export-ignore
+.gitignore     export-ignore
+.gitkeep       export-ignore
